@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name — Portfolio</title>
+  <title>Fasil Alemu — Portfolio</title>
   <style>
     :root {
       --bg: #f5f5f5;
@@ -48,7 +48,6 @@
     nav a:hover { color: #ffd700; }
     section { max-width: 900px; margin: auto; padding: 2rem; }
     h2 { text-align: center; margin-bottom: 1rem; }
-    /* Projects & Blog & Gallery */
     .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
     .project { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
     [data-theme="dark"] .project { background: #2b2b2b; }
@@ -56,15 +55,12 @@
     .project a { display: inline-block; margin-top: 0.5rem; text-decoration: none; color: var(--primary); font-weight: bold; }
     .project a:hover { color: #004080; }
     .project img { width: 100%; border-radius: 8px; }
-    /* Skills */
     .skill { margin: 1rem 0; }
     .skill-bar { height: 15px; background: #ddd; border-radius: 10px; overflow: hidden; }
     .skill-level { height: 100%; background: var(--primary); text-align: right; padding-right: 5px; color: #fff; font-size: 12px; line-height: 15px; }
-    /* Buttons */
     .btn { display: inline-block; background: var(--primary); color: #fff; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none; font-weight: bold; }
     .btn:hover { opacity: 0.8; }
     .toggle-theme { position: absolute; top: 1rem; right: 1rem; background: var(--primary); border: none; color: #fff; padding: 0.5rem; border-radius: 50%; cursor: pointer; }
-    /* Back to top */
     #topBtn { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 99; background: var(--primary); color: white; border: none; padding: 0.7rem; border-radius: 50%; cursor: pointer; }
     footer { background: var(--header-bg); color: var(--header-text); text-align: center; padding: 1rem; margin-top: 2rem; }
     footer a { color: #ffd700; text-decoration: none; }
@@ -74,8 +70,8 @@
 
   <!-- Header -->
   <header>
-    <h1>Your Name</h1>
-    <p>Software Developer • Researcher • ML Enthusiast</p>
+    <h1>Fasil Alemu</h1>
+    <p>Software Developer • ML Researcher • HRI Enthusiast</p>
     <a href="resume.pdf" class="btn" download>📄 Download Resume</a>
     <button class="toggle-theme">🌙</button>
   </header>
@@ -85,8 +81,6 @@
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
-    <a href="#blog">Blog</a>
-    <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -94,8 +88,7 @@
   <section id="about">
     <h2>About Me</h2>
     <p>
-      Hi! I'm a passionate developer focused on AI, machine learning, and
-      human–robot interaction. I enjoy building impactful projects and sharing knowledge.
+      Hi! I'm Fasil Alemu, passionate about AI, machine learning, and human-robot interaction. I build projects that combine research and practical applications to solve real-world problems.
     </p>
   </section>
 
@@ -112,6 +105,10 @@
     </div>
     <div class="skill">
       <p>Machine Learning</p>
+      <div class="skill-bar"><div class="skill-level" style="width:85%;">85%</div></div>
+    </div>
+    <div class="skill">
+      <p>Human-Robot Interaction</p>
       <div class="skill-bar"><div class="skill-level" style="width:75%;">75%</div></div>
     </div>
   </section>
@@ -121,53 +118,19 @@
     <h2>Projects</h2>
     <div class="projects">
       <div class="project">
-        <h3>Project A</h3>
-        <p>Short description of Project A with tech stack.</p>
-        <a href="https://github.com/your-username/project-a">View on GitHub</a>
+        <h3>ML Housing Predictor</h3>
+        <p>A machine learning model that predicts housing prices using regression algorithms.</p>
+        <a href="https://github.com/fasil/ml-housing-predictor">View on GitHub</a>
       </div>
       <div class="project">
-        <h3>Project B</h3>
-        <p>Short description of Project B with tech stack.</p>
-        <a href="https://github.com/your-username/project-b">View on GitHub</a>
+        <h3>Robot Gesture Interpreter</h3>
+        <p>A system that interprets human gestures to control robots in real-time.</p>
+        <a href="https://github.com/fasil/robot-gesture-interpreter">View on GitHub</a>
       </div>
       <div class="project">
-        <h3>Project C</h3>
-        <p>Short description of Project C with tech stack.</p>
-        <a href="https://github.com/your-username/project-c">View on GitHub</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog Section -->
-  <section id="blog">
-    <h2>Blog / Articles</h2>
-    <div class="projects">
-      <div class="project">
-        <h3>Article 1</h3>
-        <p>Short summary of the article or research note.</p>
-        <a href="https://yourblog.com/article1" target="_blank">Read More</a>
-      </div>
-      <div class="project">
-        <h3>Article 2</h3>
-        <p>Short summary of the article or research note.</p>
-        <a href="https://yourblog.com/article2" target="_blank">Read More</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery Section -->
-  <section id="gallery">
-    <h2>Project Gallery</h2>
-    <div class="projects">
-      <div class="project">
-        <h3>Project A Screenshot</h3>
-        <img src="images/project-a.png" alt="Project A Screenshot">
-        <a href="https://github.com/your-username/project-a">View on GitHub</a>
-      </div>
-      <div class="project">
-        <h3>Project B Screenshot</h3>
-        <img src="images/project-b.png" alt="Project B Screenshot">
-        <a href="https://github.com/your-username/project-b">View on GitHub</a>
+        <h3>Personal Finance Tracker</h3>
+        <p>A web app to manage and visualize personal expenses and budgets.</p>
+        <a href="https://github.com/fasil/personal-finance-tracker">View on GitHub</a>
       </div>
     </div>
   </section>
@@ -176,15 +139,15 @@
   <section id="contact">
     <h2>Contact</h2>
     <p>
-      📧 Email: <a href="mailto:you@example.com">you@example.com</a><br>
-      🔗 LinkedIn: <a href="https://linkedin.com/in/yourprofile">linkedin.com/in/yourprofile</a><br>
-      💻 GitHub: <a href="https://github.com/your-username">github.com/your-username</a>
+      📧 Email: <a href="mailto:fasil@example.com">fasil@example.com</a><br>
+      🔗 LinkedIn: <a href="https://linkedin.com/in/fasilalemu">linkedin.com/in/fasilalemu</a><br>
+      💻 GitHub: <a href="https://github.com/fasil">github.com/fasil</a>
     </p>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Your Name | Built with ❤️ using GitHub Pages</p>
+    <p>© 2025 Fasil Alemu | Built with ❤️ using GitHub Pages</p>
   </footer>
 
   <!-- Back to Top Button -->
@@ -217,4 +180,3 @@
 
 </body>
 </html>
-
