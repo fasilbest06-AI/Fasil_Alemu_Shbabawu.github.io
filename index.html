@@ -1,182 +1,174 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fasil Alemu — Portfolio</title>
-  <style>
-    :root {
-      --bg: #f5f5f5;
-      --text: #333;
-      --primary: #0066cc;
-      --header-bg: #222;
-      --header-text: #fff;
-    }
-    [data-theme="dark"] {
-      --bg: #1e1e1e;
-      --text: #f0f0f0;
-      --primary: #4ea3ff;
-      --header-bg: #111;
-      --header-text: #ddd;
-    }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-      background: var(--bg);
-      color: var(--text);
-      scroll-behavior: smooth;
-    }
-    header {
-      background: var(--header-bg);
-      color: var(--header-text);
-      padding: 2rem;
-      text-align: center;
-      position: relative;
-    }
-    header h1 { margin: 0; font-size: 2.5rem; }
-    header p { font-size: 1.2rem; color: #bbb; }
-    nav {
-      background: #444;
-      padding: 0.5rem;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    nav a { color: #fff; margin: 0 1rem; text-decoration: none; font-weight: bold; }
-    nav a:hover { color: #ffd700; }
-    section { max-width: 900px; margin: auto; padding: 2rem; }
-    h2 { text-align: center; margin-bottom: 1rem; }
-    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-    .project { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    [data-theme="dark"] .project { background: #2b2b2b; }
-    .project h3 { margin-top: 0; }
-    .project a { display: inline-block; margin-top: 0.5rem; text-decoration: none; color: var(--primary); font-weight: bold; }
-    .project a:hover { color: #004080; }
-    .project img { width: 100%; border-radius: 8px; }
-    .skill { margin: 1rem 0; }
-    .skill-bar { height: 15px; background: #ddd; border-radius: 10px; overflow: hidden; }
-    .skill-level { height: 100%; background: var(--primary); text-align: right; padding-right: 5px; color: #fff; font-size: 12px; line-height: 15px; }
-    .btn { display: inline-block; background: var(--primary); color: #fff; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none; font-weight: bold; }
-    .btn:hover { opacity: 0.8; }
-    .toggle-theme { position: absolute; top: 1rem; right: 1rem; background: var(--primary); border: none; color: #fff; padding: 0.5rem; border-radius: 50%; cursor: pointer; }
-    #topBtn { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 99; background: var(--primary); color: white; border: none; padding: 0.7rem; border-radius: 50%; cursor: pointer; }
-    footer { background: var(--header-bg); color: var(--header-text); text-align: center; padding: 1rem; margin-top: 2rem; }
-    footer a { color: #ffd700; text-decoration: none; }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Academic and professional portfolio of Fasil Alemu Shbabawu, Computer Science academic and AI researcher.">
+  <meta name="theme-color" content="#101827">
+  <title>Fasil Alemu Shbabawu | Academic & Professional Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Apply saved theme early to avoid a flash when the page loads.
+    document.documentElement.dataset.theme = localStorage.getItem("portfolio-theme") || "light";
+  </script>
 </head>
 <body>
-
-  <!-- Header -->
-  <header>
-    <h1>Fasil Alemu</h1>
-    <p>Software Developer • ML Researcher • HRI Enthusiast</p>
-    <a href="resume.pdf" class="btn" download>📄 Download Resume</a>
-    <button class="toggle-theme">🌙</button>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Fasil home"><span class="brand-mark">F</span><span>Fasil<span class="brand-dot">.</span></span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">☾</button>
+      </div>
+    </nav>
   </header>
 
-  <!-- Navigation -->
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      Hi! I'm Fasil Alemu, passionate about AI, machine learning, and human-robot interaction. I build projects that combine research and practical applications to solve real-world problems.
-    </p>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skill">
-      <p>Python</p>
-      <div class="skill-bar"><div class="skill-level" style="width:90%;">90%</div></div>
-    </div>
-    <div class="skill">
-      <p>JavaScript</p>
-      <div class="skill-bar"><div class="skill-level" style="width:80%;">80%</div></div>
-    </div>
-    <div class="skill">
-      <p>Machine Learning</p>
-      <div class="skill-bar"><div class="skill-level" style="width:85%;">85%</div></div>
-    </div>
-    <div class="skill">
-      <p>Human-Robot Interaction</p>
-      <div class="skill-bar"><div class="skill-level" style="width:75%;">75%</div></div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project">
-        <h3>ML Housing Predictor</h3>
-        <p>A machine learning model that predicts housing prices using regression algorithms.</p>
-        <a href="https://github.com/fasil/ml-housing-predictor">View on GitHub</a>
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse"></span> ACADEMIA · RESEARCH · TECHNOLOGY</p>
+        <h1>Fasil Alemu<br><span>Shbabawu</span></h1>
+        <p class="hero-role">Computer Science Academic | AI Researcher</p>
+        <p class="hero-text">Exploring artificial intelligence, language technologies, and multimodal learning to address meaningful challenges in resource-constrained settings.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#research">Explore my research <span>↗</span></a>
+          <a class="button button-ghost" href="assets/documents/resume.pdf" target="_blank" rel="noreferrer">View CV</a>
+        </div>
+        <div class="hero-meta"><span>Ethiopia</span><span class="meta-separator">/</span><span>Computer Science</span></div>
       </div>
-      <div class="project">
-        <h3>Robot Gesture Interpreter</h3>
-        <p>A system that interprets human gestures to control robots in real-time.</p>
-        <a href="https://github.com/fasil/robot-gesture-interpreter">View on GitHub</a>
+      <div class="hero-art" aria-label="Abstract illustration representing artificial intelligence research">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="art-core"><span>AI</span><small>RESEARCH<br>WITH PURPOSE</small></div>
+        <div class="float-card card-top"><span class="mini-icon">⌘</span><span>Artificial Intelligence</span></div>
+        <div class="float-card card-bottom"><span class="mini-icon">文</span><span>Language Technology</span></div>
+        <div class="art-dot dot-one"></div><div class="art-dot dot-two"></div><div class="art-dot dot-three"></div>
       </div>
-      <div class="project">
-        <h3>Personal Finance Tracker</h3>
-        <p>A web app to manage and visualize personal expenses and budgets.</p>
-        <a href="https://github.com/fasil/personal-finance-tracker">View on GitHub</a>
+    </section>
+
+    <section class="quick-strip">
+      <div class="container strip-grid">
+        <div><strong>Computer Science</strong><span>Academic foundation</span></div>
+        <div><strong>Artificial Intelligence</strong><span>Research direction</span></div>
+        <div><strong>Multilingual NLP</strong><span>Language technology</span></div>
+        <div><strong>Human-Centred AI</strong><span>Research perspective</span></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>
-      📧 Email: <a href="mailto:fasil@example.com">fasil@example.com</a><br>
-      🔗 LinkedIn: <a href="https://linkedin.com/in/fasilalemu">linkedin.com/in/fasilalemu</a><br>
-      💻 GitHub: <a href="https://github.com/fasil">github.com/fasil</a>
-    </p>
-  </section>
+    <section class="section container" id="about">
+      <div class="section-heading"><p class="eyebrow">01 / ABOUT</p><h2>Connecting computer science<br>with meaningful problems.</h2></div>
+      <div class="about-grid">
+        <div><p class="large-copy">I am a Computer Science academic and researcher interested in developing AI methods that are useful, inclusive, and grounded in real-world contexts.</p></div>
+        <div class="about-detail">
+          <p>I have a background in Computer Science and university-level teaching. My academic interests include natural language processing, multilingual AI, multimodal learning, and socially grounded intelligent systems.</p>
+          <p>My research particularly considers challenges in low-resource African languages and resource-constrained settings, including applications relevant to healthcare.</p>
+          <div class="fact-list">
+            <div><span>Education</span><strong>B.Sc. and M.Sc. in Computer Science</strong></div>
+            <div><span>Academic experience</span><strong>University lecturer since 2017</strong></div>
+            <div><span>Research focus</span><strong>AI, NLP and multimodal systems</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Fasil Alemu | Built with ❤️ using GitHub Pages</p>
-  </footer>
+    <section class="section section-tint" id="education">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">02 / EDUCATION & EXPERIENCE</p><h2>Academic foundations<br>and teaching experience.</h2></div>
+        <div class="timeline">
+          <article class="timeline-item"><span class="timeline-dot"></span><div class="timeline-date">CURRENT</div><div><h3>Ph.D. studies in Computer Science</h3><p>Research focus: multimodal artificial intelligence, missing-modality learning, and healthcare applications. Add your university, department, and expected completion date.</p></div></article>
+          <article class="timeline-item"><span class="timeline-dot"></span><div class="timeline-date">2017 – PRESENT</div><div><h3>Lecturer, Department of Computer Science</h3><p>Woldia University, Ethiopia. Teaching undergraduate Computer Science courses and contributing to academic activities.</p></div></article>
+          <article class="timeline-item"><span class="timeline-dot"></span><div><h3>M.Sc. in Computer Science</h3><p>University of Gondar, Ethiopia. Add graduation year and thesis title if you wish to display them.</p></div></article>
+          <article class="timeline-item"><span class="timeline-dot"></span><div><h3>B.Sc. in Computer Science</h3><p>University of Gondar, Ethiopia. Add graduation year if you wish to display it.</p></div></article>
+        </div>
+      </div>
+    </section>
 
-  <!-- Back to Top Button -->
-  <button onclick="topFunction()" id="topBtn">⬆</button>
+    <section class="section container" id="research">
+      <div class="section-heading"><p class="eyebrow">03 / RESEARCH</p><h2>Research interests.</h2><p class="section-intro">Research themes that guide my academic work and ongoing investigations.</p></div>
+      <div class="research-grid">
+        <article class="research-card"><span class="card-number">01</span><div class="card-symbol">Aa</div><h3>Natural Language Processing</h3><p>Language understanding and processing, with particular attention to Amharic and other low-resource African languages.</p><span class="tag">NLP · Language AI</span></article>
+        <article class="research-card"><span class="card-number">02</span><div class="card-symbol">◈</div><h3>Multimodal Artificial Intelligence</h3><p>Learning from heterogeneous data and developing robust approaches when modalities are incomplete or unavailable.</p><span class="tag">Multimodal learning</span></article>
+        <article class="research-card"><span class="card-number">03</span><div class="card-symbol">✳</div><h3>AI for Healthcare</h3><p>Investigating responsible AI approaches for maternal and child healthcare research and clinical data applications.</p><span class="tag">Healthcare AI</span></article>
+        <article class="research-card"><span class="card-number">04</span><div class="card-symbol">◎</div><h3>Human-Centred & Social AI</h3><p>Understanding how language, context, people, and societal needs should shape intelligent systems.</p><span class="tag">Responsible AI</span></article>
+      </div>
+    </section>
 
-  <script>
-    // Dark mode toggle
-    const toggleBtn = document.querySelector('.toggle-theme');
-    toggleBtn.addEventListener('click', () => {
-      document.body.dataset.theme =
-        document.body.dataset.theme === "dark" ? "" : "dark";
-      toggleBtn.textContent =
-        document.body.dataset.theme === "dark" ? "☀️" : "🌙";
-    });
+    <section class="section section-tint" id="publications">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">04 / PUBLICATIONS</p><h2>Publications and research outputs.</h2><p class="section-intro">Only list verified publication details here. The sample below is marked as a manuscript rather than a published paper.</p></div>
+        <div class="publication-list">
+          <article class="publication">
+            <div class="pub-year">MANUSCRIPT</div>
+            <div><h3>Amharic Named Entity Recognition using Word Embeddings and BiLSTM-CRF</h3><p>Research manuscript. Add the final publication status, author list, venue, year, and DOI or repository link when confirmed.</p></div>
+          </article>
+          <article class="publication">
+            <div class="pub-year">ADD WORK</div>
+            <div><h3>Additional publications and academic outputs</h3><p>Add journal articles, conference papers, preprints, datasets, or other research outputs with accurate bibliographic information.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    // Back to top button
-    const topBtn = document.getElementById("topBtn");
-    window.onscroll = () => {
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        topBtn.style.display = "block";
-      } else {
-        topBtn.style.display = "none";
-      }
-    };
-    function topFunction() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    }
-  </script>
+    <section class="section section-dark" id="teaching">
+      <div class="container teaching-grid">
+        <div><p class="eyebrow eyebrow-light">05 / TEACHING</p><h2>Teaching computer science<br>with clarity and curiosity.</h2><p class="dark-copy">I value clear explanations, practical examples, and helping learners build strong foundations in computing.</p></div>
+        <div class="course-panel">
+          <p class="course-label">COURSES TAUGHT</p>
+          <div class="course-list"><span>01</span> Introduction to Artificial Intelligence</div>
+          <div class="course-list"><span>02</span> Data Structures and Algorithms</div>
+          <div class="course-list"><span>03</span> Logic in Computer Science</div>
+          <div class="course-list"><span>04</span> Distributed Systems</div>
+          <div class="course-list"><span>05</span> Computer Graphics</div>
+        </div>
+      </div>
+    </section>
 
+    <section class="section container" id="projects">
+      <div class="section-heading"><p class="eyebrow">06 / PROJECTS</p><h2>Selected projects and research initiatives.</h2><p class="section-intro">Replace or supplement these entries with public repositories and project pages.</p></div>
+      <div class="project-grid">
+        <article class="project-card"><div class="project-top"><span>01 / NLP</span><span>↗</span></div><h3>Amharic NER Research</h3><p>Experiments with Word2Vec and GloVe representations for Amharic named entity recognition using a BiLSTM-CRF model.</p><a href="https://github.com/fasilbest06-AI" target="_blank" rel="noreferrer">Explore GitHub profile ↗</a></article>
+        <article class="project-card"><div class="project-top"><span>02 / HEALTH AI</span><span>↗</span></div><h3>Multimodal AI for Maternal and Child Healthcare</h3><p>Research direction investigating heterogeneous clinical data, missing modalities, and robust multimodal learning.</p><span class="project-status">Research direction</span></article>
+        <article class="project-card"><div class="project-top"><span>03 / WEB</span><span>↗</span></div><h3>AcademicConnect</h3><p>A web platform concept for academic profiles, collaboration, discussions, and knowledge sharing.</p><span class="project-status">In development</span></article>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="skills">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">07 / SKILLS</p><h2>Technical and research toolkit.</h2></div>
+        <div class="skills-grid">
+          <div class="skill-group"><h3>Programming & Development</h3><div class="skill-tags"><span>Python</span><span>JavaScript</span><span>HTML & CSS</span><span>Django</span><span>Git & GitHub</span></div></div>
+          <div class="skill-group"><h3>AI & Research</h3><div class="skill-tags"><span>Machine Learning</span><span>Natural Language Processing</span><span>Deep Learning</span><span>Word Embeddings</span><span>Multimodal AI</span><span>Research Methodology</span></div></div>
+        </div>
+        <p class="skill-note">This list describes areas of experience and interest; it intentionally avoids unsupported numerical skill ratings.</p>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container contact-inner">
+        <div><p class="eyebrow eyebrow-light">08 / CONTACT</p><h2>Let's connect and<br>exchange ideas.</h2><p class="dark-copy">For research discussions, academic collaboration, and professional inquiries, feel free to get in touch.</p></div>
+        <div class="contact-links">
+          <!-- Replace the placeholder email and LinkedIn URL with your real public profiles. -->
+          <a href="mailto:YOUR_EMAIL@example.com">YOUR_EMAIL@example.com <span>↗</span></a>
+          <a href="https://github.com/fasilbest06-AI" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn — add your profile <span>↗</span></a>
+          <a href="https://orcid.org/" target="_blank" rel="noreferrer">ORCID — add your profile <span>↗</span></a>
+          <a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Google Scholar — add your profile <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button id="topBtn" class="top-button" type="button" aria-label="Back to top">↑</button>
+  <footer class="footer"><div class="container footer-inner"><a class="brand footer-brand" href="#home"><span class="brand-mark">F</span><span>Fasil<span class="brand-dot">.</span></span></a><span>© <span id="year"></span> Fasil Alemu Shbabawu</span><a href="#home">Back to top ↑</a></div></footer>
+  <script src="js/script.js"></script>
 </body>
 </html>
