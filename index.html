@@ -1,171 +1,781 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Academic and professional portfolio of Fasil Alemu Shbabawu, Computer Science academic and AI researcher.">
-  <meta name="theme-color" content="#101827">
-  <title>Fasil Alemu Shbabawu | Academic & Professional Portfolio</title>
+  <title>Fasil Alemu Shbabawu | Academic & AI Researcher</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <script>
-    // Apply saved theme early to avoid a flash when the page loads.
-    document.documentElement.dataset.theme = localStorage.getItem("portfolio-theme") || "light";
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #08111f;
+      --surface: #101d30;
+      --surface2: #14243a;
+      --text: #edf4ff;
+      --muted: #a5b4ca;
+      --accent: #58d5c9;
+      --accent2: #8b9cff;
+      --border: rgba(255,255,255,.1);
+      --shadow: 0 18px 50px rgba(0,0,0,.22);
+    }
+
+    body.light {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface2: #edf2f8;
+      --text: #142238;
+      --muted: #52627a;
+      --accent: #087f78;
+      --accent2: #5368d9;
+      --border: rgba(20,34,56,.12);
+      --shadow: 0 18px 50px rgba(20,34,56,.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+
+    h1, h2, h3, .brand {
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.2;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .9rem;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .icon-btn, .menu-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .menu-btn { display: none; }
+
+    .hero {
+      padding: 105px 0 90px;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(83,104,217,.17), transparent 28%),
+        radial-gradient(circle at 10% 70%, rgba(88,213,201,.1), transparent 28%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .78rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      letter-spacing: -3px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-description {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 21px;
+      border-radius: 9px;
+      font-weight: 700;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #07151c;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, var(--surface2), var(--surface));
+      border: 1px solid var(--border);
+      padding: 30px;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .profile-placeholder {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      margin: 0 auto 22px;
+      display: grid;
+      place-items: center;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: #07151c;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: 5px solid var(--border);
+    }
+
+    .hero-card h3 { margin-bottom: 8px; }
+
+    .hero-card p {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .section { padding: 85px 0; }
+
+    .section-heading {
+      margin-bottom: 38px;
+      max-width: 700px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: 12px;
+    }
+
+    .section-heading p { color: var(--muted); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h3 { margin-bottom: 15px; }
+
+    .panel p { color: var(--muted); }
+
+    .journey-quote {
+      margin-top: 25px;
+      padding: 23px;
+      border-left: 4px solid var(--accent);
+      background: var(--surface2);
+      border-radius: 0 12px 12px 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.12rem;
+    }
+
+    .journey-quote small {
+      display: block;
+      color: var(--accent);
+      font-family: "DM Sans", sans-serif;
+      font-size: .8rem;
+      margin-top: 12px;
+    }
+
+    .journey-image {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-top: 20px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 25px;
+      transition: transform .25s, border-color .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 17px;
+    }
+
+    .card h3 { margin-bottom: 12px; }
+
+    .card p {
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .timeline {
+      border-left: 2px solid var(--accent);
+      margin-left: 10px;
+      padding-left: 27px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      background: var(--accent);
+      border-radius: 50%;
+      left: -35px;
+      top: 7px;
+    }
+
+    .timeline-item h3 { margin-bottom: 7px; }
+
+    .timeline-item p { color: var(--muted); }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      background: var(--surface2);
+      color: var(--accent);
+      padding: 7px 13px;
+      border-radius: 30px;
+      font-size: .83rem;
+      border: 1px solid var(--border);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .contact-link {
+      display: block;
+      color: var(--muted);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      overflow-wrap: anywhere;
+    }
+
+    .contact-link:hover { color: var(--accent); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: .88rem;
+    }
+
+    #topBtn {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      border: none;
+      background: var(--accent);
+      color: #07151c;
+      padding: 12px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid, .about-grid, .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { padding: 75px 0; }
+
+      .hero-card { max-width: 420px; }
+
+      .cards { grid-template-columns: repeat(2, 1fr); }
+
+      .menu-btn { display: inline-block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+        padding: 22px 5%;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.active { display: flex; }
+    }
+
+    @media (max-width: 560px) {
+      .cards { grid-template-columns: 1fr; }
+      .hero h1 { letter-spacing: -1.5px; }
+      .section { padding: 65px 0; }
+      .hero-grid { gap: 35px; }
+    }
+  </style>
 </head>
+
 <body>
-  <header class="site-header">
-    <nav class="nav container" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Fasil home"><span class="brand-mark">F</span><span>Fasil<span class="brand-dot">.</span></span></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">☰</button>
-      <div class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact" class="nav-cta">Contact</a>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">☾</button>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero container" id="home">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="pulse"></span> ACADEMIA · RESEARCH · TECHNOLOGY</p>
-        <h1>Fasil Alemu Shbabawu </h1>
-        <p class="hero-role">Computer Science Academic | AI Researcher</p>
-        <p>Exploring artificial intelligence, language technologies, and multimodal learning to address meaningful challenges in resource-constrained settings.</p>
-		<div class="hero-actions">
-          <a class="button button-primary" href="#research">Explore my research <span>↗</span></a>
-          <a class="button button-ghost" href="assets/documents/resume.pdf" target="_blank" rel="noreferrer">View CV</a>
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="brand">FASIL<span>.</span></a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☀</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Academic · Researcher · Innovator</p>
+        <h1>Fasil Alemu <span>Shbabawu</span></h1>
+        <p class="hero-description">
+          Computer Science Academic and AI Researcher exploring intelligent,
+          inclusive, and socially grounded technologies. Interested in
+          multilingual AI, natural language processing, and multimodal
+          artificial intelligence.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#research" class="btn btn-primary">Explore My Research</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
         </div>
-        <div class="hero-meta"><span>Ethiopia</span><span class="meta-separator">/</span><span>Computer Science</span></div>
       </div>
-      <div class="hero-art" aria-label="Abstract illustration representing artificial intelligence research">
-        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-        <div class="art-core"><span>AI</span><small>RESEARCH<br>WITH PURPOSE</small></div>
-        <div class="float-card card-top"><span class="mini-icon">⌘</span><span>Artificial Intelligence</span></div>
-        <div class="float-card card-bottom"><span class="mini-icon">文</span><span>Language Technology</span></div>
-        <div class="art-dot dot-one"></div><div class="art-dot dot-two"></div><div class="art-dot dot-three"></div>
-      </div>
-    </section>
 
-    <section class="quick-strip">
-      <div class="container strip-grid">
-        <div><strong>Computer Science</strong><span>Academic foundation</span></div>
-        <div><strong>Artificial Intelligence</strong><span>Research direction</span></div>
-        <div><strong>Multilingual NLP</strong><span>Language technology</span></div>
-        <div><strong>Human-Centred AI</strong><span>Research perspective</span></div>
+      <div class="hero-card">
+        <div class="profile-placeholder">FA</div>
+        <h3>Computer Science Academic</h3>
+        <p>AI Researcher | Lecturer | PhD Student</p>
+        <div class="tag-list" style="justify-content:center">
+          <span class="tag">Artificial Intelligence</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Multimodal AI</span>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section container" id="about">
-      <div class="section-heading"><p class="eyebrow">01 / ABOUT</p><h2>Connecting computer science<br>with meaningful problems.</h2></div>
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Who I Am</p>
+        <h2>About Me</h2>
+        <p>A journey shaped by education, persistence, curiosity, and a vision for meaningful innovation.</p>
+      </div>
+
       <div class="about-grid">
-        <div>
-			<p class="large-copy">I am a Computer Science academic and researcher interested in developing AI methods that are useful, inclusive, and grounded in real-world contexts.</p></div>
-    	  <div class="about-detail">
-          <p>I have a background in Computer Science and university-level teaching. My academic interests include natural language processing, multilingual AI, multimodal learning, and socially grounded intelligent systems.</p>
-          <p>My research particularly considers challenges in low-resource African languages and resource-constrained settings, including applications relevant to healthcare.</p>
-          <div class="fact-list">
-            <div><span>Education</span><strong>B.Sc. and M.Sc. in Computer Science</strong></div>
-            <div><span>Academic experience</span><strong>University lecturer since 2017</strong></div>
-            <div><span>Research focus</span><strong>AI, NLP and multimodal systems</strong></div>
+        <div class="panel">
+          <h3>My Academic Journey</h3>
+          <p>
+            I hold B.Sc. and M.Sc. degrees in Computer Science from the
+            University of Gondar, Ethiopia. Since 2017, I have served as
+            a lecturer in the Department of Computer Science at Woldia
+            University.
+          </p>
+          <p style="margin-top:15px">
+            My academic and research interests focus on applying artificial
+            intelligence to real-world challenges, particularly in
+            multilingual and resource-constrained environments.
+          </p>
+
+          <div class="journey-quote">
+            "My circumstances shaped my beginning, but my determination
+            is writing my future."
+            <small>— A personal principle</small>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Beyond the Beginning</h3>
+          <p>
+            I came from a background where opportunities were limited and
+            access to technology was not easy. My journey involved
+            challenges, limited support, and discouraging circumstances.
+            Rather than allowing those conditions to define my destination,
+            I chose to make learning and perseverance my driving forces.
+          </p>
+
+          <p style="margin-top:15px">
+            My roots are Ethiopian, my vision is global, and my ambition
+            is to contribute to a future shaped by knowledge, creativity,
+            and responsible AI.
+          </p>
+
+          <img
+            class="journey-image"
+            src="assets/images/my-journey.png"
+            alt="Personal journey and academic motivation"
+            onerror="this.style.display='none'"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="research">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Research Directions</p>
+        <h2>Research Interests</h2>
+        <p>Exploring intelligent technologies that address meaningful challenges in society.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon">🧠</div>
+          <h3>Artificial Intelligence</h3>
+          <p>Machine learning, deep learning, intelligent systems, and responsible AI applications.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🌍</div>
+          <h3>Multilingual NLP</h3>
+          <p>Natural language processing for Amharic and other low-resource African languages.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🔗</div>
+          <h3>Multimodal AI</h3>
+          <p>Learning from heterogeneous data, multimodal fusion, and missing-modality challenges.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🏥</div>
+          <h3>Healthcare AI</h3>
+          <p>AI-supported research for maternal and child healthcare and clinical data analysis.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">💬</div>
+          <h3>Socially Grounded AI</h3>
+          <p>Human-centred intelligent systems that consider language, culture, and social context.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🤖</div>
+          <h3>Human-Robot Interaction</h3>
+          <p>Exploring natural and accessible interaction between people and intelligent systems.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Academic Background</p>
+        <h2>Education & Experience</h2>
+      </div>
+
+      <div class="panel">
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>PhD Studies</h3>
+            <p>Computer Science / Artificial Intelligence</p>
+            <p>Research focused on multimodal AI and healthcare applications. Update this entry with your university and dates.</p>
+          </div>
+
+          <div class="timeline-item">
+            <h3>M.Sc. in Computer Science</h3>
+            <p>University of Gondar, Ethiopia</p>
+          </div>
+
+          <div class="timeline-item">
+            <h3>B.Sc. in Computer Science</h3>
+            <p>University of Gondar, Ethiopia</p>
+          </div>
+
+          <div class="timeline-item">
+            <h3>Lecturer — Department of Computer Science</h3>
+            <p>Woldia University | 2017–Present</p>
+            <p>Teaching, academic advising, research, and student supervision.</p>
           </div>
         </div>
       </div>
-		<img src="assets/images/my-journey.png" width="1000" height="400" alt="My journey from humble beginnings to AI innovation"/><br>
-    </section>
 
-    <section class="section section-tint" id="education">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">02 / EDUCATION & EXPERIENCE</p><h2>Academic foundations<br>and teaching experience.</h2></div>
-        <div class="timeline">
-          <article class="timeline-item"><span class="timeline-dot"></span><div class="timeline-date">CURRENT</div><div><h3>Ph.D. studies in Computer Science</h3><p>Research focus: multimodal artificial intelligence, missing-modality learning, and healthcare applications. Add your university, department, and expected completion date.</p></div></article>
-          <article class="timeline-item"><span class="timeline-dot"></span><div class="timeline-date">2017 – PRESENT</div><div><h3>Lecturer, Department of Computer Science</h3><p>Woldia University, Ethiopia. Teaching undergraduate Computer Science courses and contributing to academic activities.</p></div></article>
-          <article class="timeline-item"><span class="timeline-dot"></span><div><h3>M.Sc. in Computer Science</h3><p>University of Gondar, Ethiopia. 2022 and NLP related.</p></div></article>
-          <article class="timeline-item"><span class="timeline-dot"></span><div><h3>B.Sc. in Computer Science</h3><p>University of Gondar, Ethiopia. 2017.</p></div></article>
+      <div class="section-heading" style="margin-top:45px">
+        <h2>Teaching Areas</h2>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">Introduction to Artificial Intelligence</span>
+        <span class="tag">Data Structures and Algorithms</span>
+        <span class="tag">Logic in Computer Science</span>
+        <span class="tag">Distributed Systems</span>
+        <span class="tag">Computer Graphics</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Selected Work</p>
+        <h2>Research & Projects</h2>
+        <p>A selection of research directions and academic work.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon">📝</div>
+          <h3>Amharic Named Entity Recognition</h3>
+          <p>Research investigating static word embeddings and BiLSTM-CRF for Amharic named entity recognition.</p>
+          <p style="margin-top:14px;color:var(--accent)">Manuscript / Research</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🏥</div>
+          <h3>Multimodal AI for Maternal Healthcare</h3>
+          <p>Research direction exploring heterogeneous clinical modalities, missing data, and maternal and neonatal outcomes.</p>
+          <p style="margin-top:14px;color:var(--accent)">PhD Research Direction</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🌐</div>
+          <h3>Low-Resource Language AI</h3>
+          <p>Exploring language technologies and computational methods for underrepresented African languages.</p>
+          <p style="margin-top:14px;color:var(--accent)">Research Interest</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Technical Profile</p>
+        <h2>Skills & Expertise</h2>
+      </div>
+
+      <div class="panel">
+        <h3>Research and Technical Areas</h3>
+        <div class="tag-list">
+          <span class="tag">Python</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">Natural Language Processing</span>
+          <span class="tag">Amharic NLP</span>
+          <span class="tag">Word Embeddings</span>
+          <span class="tag">BiLSTM-CRF</span>
+          <span class="tag">Multimodal Learning</span>
+          <span class="tag">Data Analysis</span>
+          <span class="tag">Academic Writing</span>
+          <span class="tag">Teaching</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section container" id="research">
-      <div class="section-heading"><p class="eyebrow">03 / RESEARCH</p><h2>Research interests.</h2><p class="section-intro">Research themes that guide my academic work and ongoing investigations.</p></div>
-      <div class="research-grid">
-        <article class="research-card"><span class="card-number">01</span><div class="card-symbol">Aa</div><h3>Natural Language Processing</h3><p>Language understanding and processing, with particular attention to Amharic and other low-resource African languages.</p><span class="tag">NLP · Language AI</span></article>
-        <article class="research-card"><span class="card-number">02</span><div class="card-symbol">◈</div><h3>Multimodal Artificial Intelligence</h3><p>Learning from heterogeneous data and developing robust approaches when modalities are incomplete or unavailable.</p><span class="tag">Multimodal learning</span></article>
-        <article class="research-card"><span class="card-number">03</span><div class="card-symbol">✳</div><h3>AI for Healthcare</h3><p>Investigating responsible AI approaches for maternal and child healthcare research and clinical data applications.</p><span class="tag">Healthcare AI</span></article>
-        <article class="research-card"><span class="card-number">04</span><div class="card-symbol">◎</div><h3>Human-Centred & Social AI</h3><p>Understanding how language, context, people, and societal needs should shape intelligent systems.</p><span class="tag">Responsible AI</span></article>
+  <section class="section" id="publications">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Academic Contributions</p>
+        <h2>Publications & Scholarly Work</h2>
       </div>
-    </section>
 
-    <section class="section section-tint" id="publications">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">04 / PUBLICATIONS</p><h2>Publications and research outputs.</h2></div>
-        <div class="publication-list">
-          <article class="publication">
-            <div class="pub-year">MANUSCRIPT</div>
-            <div><h2> Coming Soon. or please contact me by Email:</h2></div>
-          </article>
+      <div class="panel">
+        <h3>Amharic Named Entity Recognition Using Word Embeddings and BiLSTM-CRF</h3>
+        <p>
+          Research on the impact of non-contextual word embedding
+          configurations on Amharic Named Entity Recognition.
+        </p>
+        <p style="margin-top:12px;color:var(--accent)">Manuscript — update with publication details when available.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Let's Connect</p>
+        <h2>Contact & Academic Profiles</h2>
+        <p>For research collaboration, academic discussions, and professional opportunities.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="panel">
+          <h3>Get in Touch</h3>
+          <a class="contact-link" href="mailto:fasilbest06@gmail.com">✉ fasilbest06@gmail.com</a>
+          <a class="contact-link" href="https://github.com/fasilbest06-AI" target="_blank" rel="noopener">GitHub Profile</a>
+          <a class="contact-link" href="https://www.linkedin.com/in/fasil-alemu-shbabawu-450266199/" target="_blank" rel="noopener">LinkedIn Profile</a>
+        </div>
+
+        <div class="panel">
+          <h3>Academic Profiles</h3>
+          <a class="contact-link" href="https://orcid.org/0009-0007-8820-7290" target="_blank" rel="noopener">ORCID</a>
+          <a class="contact-link" href="https://scholar.google.com/citations?user=fJNZIjQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          <a class="contact-link" href="assets/documents/resume.pdf" target="_blank">Download CV (add your PDF)</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section section-dark" id="teaching">
-      <div class="container teaching-grid">
-        <div><p class="eyebrow eyebrow-light">05 / TEACHING</p><h2>Teaching computer science<br>with clarity and curiosity.</h2><p class="dark-copy">I value clear explanations, practical examples, and helping learners build strong foundations in computing.</p></div>
-        <div class="course-panel">
-          <p class="course-label">COURSES TAUGHT</p>
-          <div class="course-list"><span>01</span> Introduction to Artificial Intelligence</div>
-          <div class="course-list"><span>02</span> Data Structures and Algorithms</div>
-          <div class="course-list"><span>03</span> Logic in Computer Science</div>
-          <div class="course-list"><span>04</span> Distributed Systems</div>
-          <div class="course-list"><span>05</span> Computer Graphics</div>
-        </div>
-      </div>
-    </section>
+</main>
 
-    <section class="section container" id="projects">
-      <div class="section-heading"><p class="eyebrow">06 / PROJECTS</p><h2>Selected projects and research initiatives.</h2><p class="section-intro">Replace or supplement these entries with public repositories and project pages.</p></div>
-      <div class="project-grid">
-        <article class="project-card"><div class="project-top"><span>01 / NLP</span><span>↗</span></div><h3>Amharic NER Research</h3><p>Experiments with Word2Vec and GloVe representations for Amharic named entity recognition using a BiLSTM-CRF model.</p><a href="https://github.com/fasilbest06-AI" target="_blank" rel="noreferrer">Explore GitHub profile ↗</a></article>
-        <article class="project-card"><div class="project-top"><span>02 / HEALTH AI</span><span>↗</span></div><h3>Multimodal AI for Maternal and Child Healthcare</h3><p>Research direction investigating heterogeneous clinical data, missing modalities, and robust multimodal learning.</p><span class="project-status">Research direction</span></article>
-        <article class="project-card"><div class="project-top"><span>03 / WEB</span><span>↗</span></div><h3>AcademicConnect</h3><p>A web platform concept for academic profiles, collaboration, discussions, and knowledge sharing.</p><span class="project-status">In development</span></article>
-      </div>
-    </section>
+<footer>
+  <div class="container">
+    <p>© <span id="year"></span> Fasil Alemu Shbabawu. Built with purpose, knowledge, and curiosity.</p>
+    <p style="margin-top:6px;color:var(--accent)">Rooted in Ethiopia. Driven by Knowledge. Leading with AI. Creating for Humanity.</p>
+  </div>
+</footer>
 
-    <section class="section section-tint" id="skills">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">07 / SKILLS</p><h2>Technical and research toolkit.</h2></div>
-        <div class="skills-grid">
-          <div class="skill-group"><h3>Programming & Development</h3><div class="skill-tags"><span>Python</span><span>JavaScript</span><span>HTML & CSS</span><span>Django</span><span>Git & GitHub</span></div></div>
-          <div class="skill-group"><h3>AI & Research</h3><div class="skill-tags"><span>Machine Learning</span><span>Natural Language Processing</span><span>Deep Learning</span><span>Word Embeddings</span><span>Multimodal AI</span><span>Research Methodology</span></div></div>
-        </div>
-      </div>
-    </section>
+<button id="topBtn" aria-label="Back to top">↑</button>
 
-    <section class="contact-section" id="contact">
-      <div class="container contact-inner">
-        <div><p class="eyebrow eyebrow-light">08 / CONTACT</p><h2>Let's connect and<br>exchange ideas.</h2><p class="dark-copy">For research discussions, academic collaboration, and professional inquiries, feel free to get in touch.</p></div>
-        <div class="contact-links">
-          <!-- Replace the placeholder email and LinkedIn URL with your real public profiles. -->
-          <a href="mailto:fasilbest06@gmail.com">fasilbest06@gmail.com <span>↗</span></a>
-          <a href="https://fasilbest06-ai.github.io/Fasil_Alemu_Shbabawu.github.io/" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
-          <a href="https://www.linkedin.com/in/fasil-alemu-shbabawu-450266199" target="_blank" rel="noreferrer">LinkedIn-Fasil Alemu Shbabawu<span>↗</span></a>
-          <a href="https://orcid.org/0009-0007-8820-7290" target="_blank" rel="noreferrer">ORCID — Fasil Alemu Shbabawu <span>↗</span></a>
-          <a href="https://scholar.google.com/citations?user=fJNZIjQAAAAJ&hl" target="_blank" rel="noreferrer">Google Scholar — Fasil Alemu Shbabawu <span>↗</span></a>
-        </div>
-      </div>
-    </section>
-  </main>
+<script>
+  const themeBtn = document.getElementById("themeBtn");
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.getElementById("navLinks");
+  const topBtn = document.getElementById("topBtn");
 
-  <button id="topBtn" class="top-button" type="button" aria-label="Back to top">↑</button>
-  <footer class="footer"><div class="container footer-inner"><a class="brand footer-brand" href="#home"><span class="brand-mark">F</span><span>Fasil<span class="brand-dot">.</span></span></a><span>© <span id="year"></span> Fasil Alemu Shbabawu</span><a href="#home">Back to top ↑</a></div></footer>
-  <script src="js/script.js"></script>
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    themeBtn.textContent =
+      document.body.classList.contains("light") ? "☾" : "☀";
+  });
+
+  menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+    });
+  });
+
+  window.addEventListener("scroll", () => {
+    topBtn.style.display = window.scrollY > 400 ? "block" : "none";
+  });
+
+  topBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
